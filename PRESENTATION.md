@@ -54,10 +54,10 @@ Prim's is a **greedy algorithm** — it always picks the cheapest available edge
 6. Repeat until all nodes are visited.
 
 **Time complexity: O(E log V)**
-- Every edge is pushed/popped from the heap once → O(E log E) ≈ O(E log V)
+- Heap operations are proportional to edge candidates processed, yielding O(E log V) overall for sparse graphs (equivalently O(E log E) bounds are common).
 
 **Result for A→H (source=A):**
-- MST edges: A–C(2), B–C(1), A–B→via C–B, B–D(5), D–E(2), E–G(3), F–G(1), F–H(2)
+- MST edges: A–C(2), C–B(1), B–D(5), D–E(2), E–G(3), G–F(1), F–H(2)
 - Total MST weight: **16**
 
 ### What You See in the Visualizer

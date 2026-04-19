@@ -183,7 +183,7 @@ Suggested demo order:
 **Q: What happens with negative edge weights?**
 > Dijkstra breaks. Once a node is popped, it assumes that distance is final — negative edges
 > could later provide a shorter path, violating this assumption. You'd need Bellman-Ford instead.
-> Prim's also assumes non-negative weights in practice.
+> Prim's does not require non-negative weights; it still finds an MST with negative edges.
 
 **Q: What if the graph has multiple MSTs with the same total weight?**
 > Any of them are valid — they all satisfy the minimum total weight condition. The specific MST
