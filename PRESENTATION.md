@@ -96,8 +96,8 @@ Also a **greedy algorithm**, but instead of building a tree, it finds optimal di
 - Each node is processed once; each edge relaxation costs O(log V) heap operations.
 
 **Result for A→H:**
-- Shortest path: **A → C → B → D → E → G → F → H**
-- Total distance: **14**
+- Shortest path: **A → H** (direct edge — weight 9 beats any multi-hop route)
+- Total distance: **9**
 
 ### What You See in the Visualizer
 
@@ -134,9 +134,9 @@ These are different objectives. The MST doesn't care about any specific pair —
 
 | Metric | Value |
 |--------|-------|
-| Dijkstra path | A→C→B→D→E→G→F→H = **14** |
-| MST path to H | Follows MST tree edges = **varies** |
-| Stretch Factor | `MST_path_distance / 14` |
+| Dijkstra path | A → H (direct) = **9** |
+| MST path to H | A→C→B→D→E→G→F→H = **16** (MST has no direct A–H edge) |
+| Stretch Factor | 16 / 9 ≈ **1.78×** |
 
 A stretch factor of **1.0** means the MST happened to contain the shortest path. Greater than 1.0 means the MST route is suboptimal for that pair.
 
