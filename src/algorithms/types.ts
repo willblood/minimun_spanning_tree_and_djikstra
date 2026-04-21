@@ -33,3 +33,9 @@ export interface DijkstraResult {
   steps: AlgoStep[]
   pathWeight: number
 }
+
+export interface KruskalResult {
+  mstEdges: GraphEdge[]
+  steps: AlgoStep[]
+  totalWeight: number
+}
