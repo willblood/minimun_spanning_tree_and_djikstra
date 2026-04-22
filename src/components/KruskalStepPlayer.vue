@@ -39,6 +39,7 @@ function onSpeedChange(e: Event) {
       <button
         @click="store.prevStep()"
         :disabled="store.currentStepIndex <= 0"
+        aria-label="Previous step"
         class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 disabled:opacity-40 text-sm font-bold"
       >
         ◀
@@ -61,6 +62,7 @@ function onSpeedChange(e: Event) {
       <button
         @click="store.nextStep()"
         :disabled="store.currentStepIndex >= store.totalSteps - 1"
+        aria-label="Next step"
         class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 disabled:opacity-40 text-sm font-bold"
       >
         ▶
@@ -68,10 +70,11 @@ function onSpeedChange(e: Event) {
     </div>
 
     <div>
-      <label class="block text-xs font-semibold text-slate-500 mb-1">
+      <label for="speed-range" class="block text-xs font-semibold text-slate-500 mb-1">
         Speed: {{ store.animationSpeed }}ms / step
       </label>
       <input
+        id="speed-range"
         type="range"
         min="200"
         max="1200"

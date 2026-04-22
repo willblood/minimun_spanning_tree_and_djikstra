@@ -44,6 +44,7 @@ export const useKruskalStore = defineStore('kruskal', () => {
 
   function play() {
     if (isPlaying.value) return
+    if (currentStepIndex.value >= steps.value.length - 1) return
     isPlaying.value = true
     intervalId = setInterval(nextStep, animationSpeed.value)
   }

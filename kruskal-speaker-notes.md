@@ -157,7 +157,7 @@
 > [pause]
 > This is because of a theorem in graph theory called the Cut Property —
 > but the intuition is simple: if an edge is the cheapest way to connect two groups,
-> it must be in the MST."
+> it is always safe to add it to an MST."
 
 ---
 

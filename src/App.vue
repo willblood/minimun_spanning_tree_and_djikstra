@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useGraphStore } from './stores/graphStore'
+import { useKruskalStore } from './stores/kruskalStore'
+
 const route = useRoute()
+const graphStore = useGraphStore()
+const kruskalStore = useKruskalStore()
+
+const activeGraph = computed(() =>
+  route.path === '/kruskal' ? kruskalStore.graph : graphStore.graph,
+)
 </script>
 
 <template>
@@ -12,7 +22,7 @@ const route = useRoute()
           <p class="text-slate-400 text-sm">Interactive step-by-step algorithm demos</p>
         </div>
         <div class="text-right text-xs text-slate-400">
-          <p>8 nodes · 12 edges</p>
+          <p>{{ activeGraph.nodes.length }} nodes · {{ activeGraph.edges.length }} edges</p>
         </div>
       </div>
 

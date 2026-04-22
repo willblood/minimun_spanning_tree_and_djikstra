@@ -52,24 +52,26 @@ function edgeSelector(edgeId: string): string {
   return `edge[source="${a}"][target="${b}"], edge[source="${b}"][target="${a}"]`
 }
 
-function applyStepStyle(index: number) {
-  if (!cy) return
-  const step = store.steps[index]
-  if (!step) return
-
-  if (step.type === 'edge-candidate' && step.edgeId) {
-    cy.$(edgeSelector(step.edgeId)).addClass('candidate')
-  } else if (step.type === 'edge-accepted' && step.edgeId) {
-    cy.$(edgeSelector(step.edgeId)).removeClass('candidate').addClass('mst-edge')
-    const [a, b] = step.edgeId.split('-')
-    cy.$(`#${a}, #${b}`).addClass('mst-node')
-  } else if (step.type === 'edge-rejected' && step.edgeId) {
-    cy.$(edgeSelector(step.edgeId)).removeClass('candidate').addClass('rejected')
-  }
-}
-
 function clearAlgoStyles() {
   cy?.elements().removeClass('mst-edge candidate rejected mst-node')
+}
+
+function rebuildStyles(upToIndex: number) {
+  if (!cy) return
+  clearAlgoStyles()
+  for (let i = 0; i <= upToIndex; i++) {
+    const step = store.steps[i]
+    if (!step) continue
+    if (step.type === 'edge-candidate' && step.edgeId) {
+      cy.$(edgeSelector(step.edgeId)).addClass('candidate')
+    } else if (step.type === 'edge-accepted' && step.edgeId) {
+      cy.$(edgeSelector(step.edgeId)).removeClass('candidate').addClass('mst-edge')
+      const [a, b] = step.edgeId.split('-')
+      cy.$(`#${a}, #${b}`).addClass('mst-node')
+    } else if (step.type === 'edge-rejected' && step.edgeId) {
+      cy.$(edgeSelector(step.edgeId)).removeClass('candidate').addClass('rejected')
+    }
+  }
 }
 
 watch(() => store.currentStepIndex, (idx) => {
@@ -77,7 +79,7 @@ watch(() => store.currentStepIndex, (idx) => {
     clearAlgoStyles()
     return
   }
-  applyStepStyle(idx)
+  rebuildStyles(idx)
 })
 
 onMounted(() => {

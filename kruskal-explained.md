@@ -7,7 +7,8 @@ A **Spanning Tree** connects **all cities** using exactly **N-1 roads** (no loop
 A **Minimum Spanning Tree** does this at the **lowest total cost possible**.
 
 Key facts:
-- A graph with **N nodes** has exactly **N-1 edges** in its MST.
+- A **connected** graph with **N nodes** has exactly **N-1 edges** in its MST.
+  (For disconnected graphs, Kruskal produces a **minimum spanning forest** — one MST per connected component.)
 - There are no cycles in a spanning tree.
 - The MST is not necessarily unique (there can be ties).
 
@@ -164,7 +165,7 @@ Since E ≤ V², we also write this as O(E log V) — they are equivalent asympt
 | Kruskal   | Sparse graphs    | O(E log E)   |
 | Prim      | Dense graphs     | O(E log V)   |
 
-Both produce the same MST (or an equivalent one if edge weights have ties).
+Both produce an MST with the same minimum total cost (they may choose different edges when weights are tied).
 
 ---
 
